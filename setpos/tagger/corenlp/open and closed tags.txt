@@ -1,0 +1,31 @@
+Offen:
+'ADJA', 'ADJA<VVPP', 'ADJA<VVPS', 'ADJD', 'ADJN', 'ADJN<VVPP', 'ADJS', 'ADJV'
+
+'CARDA', 'CARDN', 'CARDS'
+
+'NA', 'NE'
+
+'VAFIN', 'VAFIN.*', 'VAFIN.ind', 'VAFIN.konj', 'VAINF', 'VAPP', 'VKFIN.*',
+'VKFIN.ind', 'VKFIN.konj', 'VKINF', 'VKPP', 'VKPS', 'VMFIN.*', 'VMFIN.ind', 
+'VMFIN.konj', 'VMINF', 'VVFIN.*', 'VVFIN.ind', 'VVFIN.konj', 'VVIMP', 'VVINF',
+'VVPP', 'VVPS'
+
+'OA'
+
+------------------------------------------------------
+Geschlossen:
+'APPO', 'APPR'
+
+'AVD', 'AVG', 'AVNEG', 'AVREL', 'AVW',
+
+'PAVAP', 'PAVD', 'PAVG', 'PAVREL'
+
+'PG', 'PI', PNEG', 'PPER', 'PRF','PKOR'
+
+'DDA', 'DDART', 'DDD', 'DDN', 'DDS', 'DDSA', 'DGA', 'DGN', 'DGS', 'DIA',
+'DIART', 'DID', 'DIN', 'DIS', 'DNEGA', 'DNEGS', 'DPDS', 'DPOSA', 'DPOSD',
+'DPOSGEN', 'DPOSN', 'DPOSS', 'DRELA', 'DRELS', 'DWS', 
+
+'PTKA', 'PTKANT', 'PTKG', 'PTKN', 'PTKNEG', 'PTKREL', 'PTKVZ', 'PTKZU', 
+
+'KO*', 'KOKOM', 'KON', 'KOUS'

@@ -1,0 +1,1 @@
+from .simpletagger import SimpleTagger

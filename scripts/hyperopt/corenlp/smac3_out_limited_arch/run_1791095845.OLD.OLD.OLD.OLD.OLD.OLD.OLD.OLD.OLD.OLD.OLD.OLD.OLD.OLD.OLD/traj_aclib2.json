@@ -1,0 +1,50 @@
+{
+  "cpu_time": 0,
+  "total_cpu_time": null,
+  "wallclock_time": 0.12764239311218262,
+  "evaluations": 0,
+  "cost": 2147483648,
+  "incumbent": [
+    "augment_setvalued_targets='False'",
+    "corenlp_train_params__arch__biwords__enable='False'",
+    "corenlp_train_params__arch__lowercasewords__enable='False'",
+    "corenlp_train_params__arch__order='2'",
+    "corenlp_train_params__arch__prefix__multi='()'",
+    "corenlp_train_params__arch__prefixsuffix__multi='()'",
+    "corenlp_train_params__arch__suffix__multi='()'",
+    "corenlp_train_params__arch__words='(-1, 1)'",
+    "corenlp_train_params__curWordMinFeatureThreshold='2'",
+    "corenlp_train_params__minFeatureThreshold='5'",
+    "corenlp_train_params__rareWordMinFeatureThresh='10'",
+    "corenlp_train_params__rareWordThresh='5'",
+    "corenlp_train_params__sigmaSquared='0.5'",
+    "corenlp_train_params__veryCommonWordThresh='250'",
+    "filter_tags='('$',)'"
+  ],
+  "origin": "Default"
+}
+{
+  "cpu_time": 0.7485463619232178,
+  "total_cpu_time": null,
+  "wallclock_time": 0.9068939685821533,
+  "evaluations": 1,
+  "cost": 2147483647.0,
+  "incumbent": [
+    "augment_setvalued_targets='False'",
+    "corenlp_train_params__arch__biwords__enable='False'",
+    "corenlp_train_params__arch__lowercasewords__enable='False'",
+    "corenlp_train_params__arch__order='2'",
+    "corenlp_train_params__arch__prefix__multi='()'",
+    "corenlp_train_params__arch__prefixsuffix__multi='()'",
+    "corenlp_train_params__arch__suffix__multi='()'",
+    "corenlp_train_params__arch__words='(-1, 1)'",
+    "corenlp_train_params__curWordMinFeatureThreshold='2'",
+    "corenlp_train_params__minFeatureThreshold='5'",
+    "corenlp_train_params__rareWordMinFeatureThresh='10'",
+    "corenlp_train_params__rareWordThresh='5'",
+    "corenlp_train_params__sigmaSquared='0.5'",
+    "corenlp_train_params__veryCommonWordThresh='250'",
+    "filter_tags='('$',)'"
+  ],
+  "origin": "Default"
+}

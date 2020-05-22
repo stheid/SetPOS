@@ -1,0 +1,72 @@
+{
+  "data": [
+    [
+      [
+        1,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        316.89806270599365,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ]
+  ],
+  "config_origins": {
+    "1": "Default"
+  },
+  "configs": {
+    "1": {
+      "augment_setvalued_targets": false,
+      "corenlp_train_params__arch__biwords__enable": false,
+      "corenlp_train_params__arch__lowercasewords__enable": false,
+      "corenlp_train_params__arch__order": 2,
+      "corenlp_train_params__arch__prefix__multi": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "corenlp_train_params__arch__prefixsuffix__multi": [],
+      "corenlp_train_params__arch__suffix__multi": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "corenlp_train_params__arch__words": [
+        -2,
+        2
+      ],
+      "corenlp_train_params__curWordMinFeatureThreshold": 2,
+      "corenlp_train_params__minFeatureThreshold": 5,
+      "corenlp_train_params__rareWordMinFeatureThresh": 10,
+      "corenlp_train_params__rareWordThresh": 5,
+      "corenlp_train_params__sigmaSquared": 0.5,
+      "corenlp_train_params__veryCommonWordThresh": 250,
+      "filter_tags": [
+        "$"
+      ]
+    }
+  }
+}

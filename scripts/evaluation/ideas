@@ -1,0 +1,23 @@
+# in-doc, single instance
+for each doc of at with at least 7000 tokens
+    for each classifier
+        # two classifiers, k datasets, 3 metrics -> two grouped barplots (over datasets), one for acc;util
+        #           table (clf row, dataset col, subtable in cell for each metric)
+        fit classifier on this documents training set
+        evaluate for accuracy; 1,1 utility; set-size
+
+
+# in-doc, all instances
+for each classifier
+    # two classifiers, one dataset, n metrics -> grouped barplots (over metrics) + table (two rows, n columns)
+    fit clf on train on whole train split
+    evaluate all performance numbers for the dataset  (acc, util1/.5, set-size, util1/1, set-size, util1/5, set-size, prec, recall)
+
+# inter-doc
+for each doc
+   for each classifier
+        for each variant
+            # two variants, two clfs, 29 docs, 3 metrics -> two grouped barplots (over datasets), one for acc; util
+            #           table (clf row, dataset col, subtable in cell for each metric)
+            fit clf
+            evaluate for accuracy; 1,1 utility; set-size
