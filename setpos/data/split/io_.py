@@ -44,7 +44,7 @@ def filtertags(toks, tags, tag_prefix_masks):
     return zip(*[(tok, tags) for tok, tags in zip(toks, tags) if is_masked(tags, tag_prefix_masks)])
 
 
-def load(file=ifile, tag_prefix_masks=()):
+def load(file=ifile, tag_prefix_masks=(), n: int = None):
     with open(file) as f:
         data = json.load(f)
 
@@ -57,6 +57,8 @@ def load(file=ifile, tag_prefix_masks=()):
         i += len(toks)
         toks_tags_groups.extend(list(zip(toks, tags, repeat(title, len(toks)))))
     # return toks, tags, groups
+    if n:
+        return [np.array(l)[:n] for l in zip(*toks_tags_groups)]
     return [np.array(l) for l in zip(*toks_tags_groups)]
 
 

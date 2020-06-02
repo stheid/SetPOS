@@ -68,10 +68,11 @@ if __name__ == '__main__':
 
     df.loc[['ml-acc']].rename({'ml-acc': 'acc'}).T.mean(level=0).T \
         .rename(to_sc, axis='columns').plot.bar(ax=ax, yerr=df.loc[['ml-acc']].rename({'ml-acc': 'acc'}).T.std(
-        level=0).T.rename(to_sc, axis='columns'), legend=False)
+        level=0).T.rename(to_sc, axis='columns'), legend=False, width=.66)
     df.loc[losses[1:]].rename(dict(zip(losses[1:], [f'${beta}$' for beta in betas]))).T.mean(level=0).T \
         .rename(to_sc, axis='columns').plot.bar(ax=ax2, yerr=df.loc[losses[1:]].rename(
-        dict(zip(losses[1:], [f'${beta}$' for beta in betas]))).T.std(level=0).T.rename(to_sc, axis='columns'))
+        dict(zip(losses[1:], [f'${beta}$' for beta in betas]))).T.std(level=0).T.rename(to_sc, axis='columns'),
+                                                width=.66, legend=False)
     ax.tick_params(axis='x', rotation=0)
     ax2.tick_params(axis='x', rotation=0)
     ax2.set_xlabel('util / $\\beta$')
@@ -80,7 +81,6 @@ if __name__ == '__main__':
     ax2.yaxis.tick_right()
     ax.grid(which='both', axis='y')
     ax2.grid(which='both', axis='y')
-    ax2.legend(loc='lower right')
     ax.set_ylim(bottom=.5, top=1)
     ax2.set_ylim(bottom=.5, top=1)
     f.suptitle('Predictive Performance', fontsize=8, y=.962)
@@ -109,7 +109,8 @@ if __name__ == '__main__':
 
     setsize = [idx for idx in df.index if 'ml-' not in idx and idx != 'tokens']
     ax = df.loc[setsize].T.mean(level=0).T \
-        .rename(to_sc, axis='columns').plot.bar(yerr=df.loc[setsize].T.std(level=0).T.rename(to_sc, axis='columns'))
+        .rename(to_sc, axis='columns').plot.bar(yerr=df.loc[setsize].T.std(level=0).T.rename(to_sc, axis='columns'),
+                                                width=.6)
     ax.tick_params(axis='x', rotation=0)
     ax.legend(loc='upper left')
     ax.set_title('Set Size')

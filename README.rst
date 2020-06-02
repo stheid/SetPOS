@@ -31,10 +31,22 @@ Installation
 **Disclaimer**: The code probably doesn't run without modifications on Windows.
 It should work on any standard Linux distribution.
 
+Simple
+^^^^^^
+* Install Python package::
+
+  $ pip install .
+
+
+
+Complete
+^^^^^^^^
+
 * Download TreeTagger_ and place the binaries :code:`tree-tagger` and :code:`train-tree-tagger` in the :code:`setpos/tagger/treetagger` folder.
   Make sure the executable flag is set.
   This code is tested with version 3.2.2.
-* Install :code:`java` version 10
+* Install :code:`java` version 11 (for CoreNLP)
+* Install :code:`swig-3` (for hyperopt)
 * Install Python package::
 
   $ pip install .[extra]

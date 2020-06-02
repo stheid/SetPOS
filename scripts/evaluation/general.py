@@ -21,7 +21,7 @@ clfs = [clf, dict(clf=MostFrequentTag),
                            '-ecw', '0.6844143695818022', '-lt', '0.018083566511875225', '-sw', '4.872697144433427'],
              eval_params=['-beam', '9.17490365933556e-05', '-eps', '0.9975176265361098'])]
 
-outdir = '../../../../Papier/'
+outdir = '../../Papier/'
 
 to_sc = lambda s: re.sub('[A-Z]+', lambda s_: f'\\textsc{{{s_[0].lower()}}}', s.title() if s == 'baseline' else s)
 
