@@ -4,18 +4,16 @@ import logging
 import os
 import re
 import tempfile
-from configparser import ConfigParser
-from os import path
 from subprocess import run
 
 import pandas as pd
 from pandas.errors import EmptyDataError
 from sklearn.model_selection import cross_val_score
 
-from setpos.data.split import MCInDocSplitter, KFoldInDocSplitter, dump as split_dump, is_masked
 from setpos.data.evaluate import print_classical_pred_stats, print_set_valued_pred_stats, load as eval_load
-from setpos.tagger import create_ubop_predictor
+from setpos.data.split import MCInDocSplitter, KFoldInDocSplitter, dump as split_dump, is_masked
 from setpos.tagger.base import StateFullTagger
+from setpos.util import create_ubop_predictor
 
 logger = logging.getLogger(__name__)
 
@@ -102,6 +100,10 @@ class CoreNLPTagger(StateFullTagger):
         df, tags = self.transform(X)
         return df.pred.to_numpy()
 
+    def predict_proba(self, X, y=None):
+        df, tags = self.transform(X)
+        return np.exp(np.array(df.posterior.tolist())), tags
+
     def setpredict(self, X):
         """
         :param X:
@@ -149,11 +151,12 @@ if __name__ == '__main__':
     clf = CoreNLPTagger(loglevel=logging.INFO)
 
     clf.fit(toks[np.isin(groups, g[1:2])], tags[np.isin(groups, g[1:2])])
-
     clf.fit(toks[np.isin(groups, g[0:1])], tags[np.isin(groups, g[0:1])])
+    # clf.fit(toks, tags)
 
     # schap/NA vnde/KON dar/PAVD to/PAVAP hebbe/VAFIN ik/PPER ere/PPER gegeuen/VVPP
-    print(clf.predict(sents_to_dataset(['schap vnde dar to hebbe ik ere gegeuen'.split()])))
+    print(clf.predict_proba(sents_to_dataset(['schap vnde dar to hebbe ik ere gegeuen'.split()])))
+    print(clf.setpredict(sents_to_dataset(['schap vnde dar to hebbe ik ere gegeuen'.split()])))
 
     results = clf.score(toks[np.isin(groups, g[1:2])], tags[np.isin(groups, g[1:2])], raw=True)
     print_classical_pred_stats(*results)

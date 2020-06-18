@@ -7,7 +7,7 @@ import seaborn as sns
 from numpy.random import exponential
 from scipy.stats import entropy
 
-from setpos.tagger import create_g_alpha_beta, create_ubop_predictor
+from setpos.util import create_g_alpha_beta, create_ubop_predictor
 
 if __name__ == '__main__':
     K, n = 10, 1000000

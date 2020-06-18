@@ -3,7 +3,7 @@ from itertools import groupby
 
 import pandas as pd
 
-from setpos.tagger import create_g_alpha_beta
+from setpos.util import create_g_alpha_beta
 from setpos.util import stopwatch
 
 TAGS = ['ADJA', 'ADJA<VVPP', 'ADJA<VVPS', 'ADJD', 'ADJN', 'ADJN<VVPP', 'ADJS', 'ADJV', 'APPO', 'APPR', 'AVD',

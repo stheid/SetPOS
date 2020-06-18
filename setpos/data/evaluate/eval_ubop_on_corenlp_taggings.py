@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 
 from setpos.data.split import load
-from setpos.tagger import score, create_g_alpha_beta, create_ubop_predictor, util
+from setpos.util import score, create_g_alpha_beta, create_ubop_predictor, util
 
 
 def print_stats(data: pd.DataFrame, label: str, fun: callable, fmt=".2%"):

@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.base import BaseEstimator
 from sklearn.exceptions import NotFittedError
 
-from setpos.tagger.base.functions import create_g_alpha_beta, util, create_ubop_predictor, score
+from setpos.util import create_g_alpha_beta, util, create_ubop_predictor, score
 
 
 class BaseTagger(BaseEstimator):
