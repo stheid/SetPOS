@@ -7,7 +7,7 @@ Setvalued Part of Speech Tagging
 .. |license| image:: https://img.shields.io/github/license/stheid/SetPOS
     :target: LICENSE
 
-.. |thesis| image:: https://img.shields.io/badge/thesis-10.17619%2FUNIPB%2F1--957-informational
+.. |thesis| image:: https://img.shields.io/badge/thesis-doi:10.17619%2FUNIPB%2F1--957-informational
     :target: https://digital.ub.upb.de/hs/download/pdf/3395154
 
 This package provide `set-valued`_ POS-taggers.
