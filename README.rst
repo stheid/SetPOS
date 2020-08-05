@@ -2,13 +2,16 @@
 Setvalued Part of Speech Tagging
 ================================
 
-|license| |thesis|
+|license| |thesis| |paper|
 
 .. |license| image:: https://img.shields.io/github/license/stheid/SetPOS
     :target: LICENSE
 
 .. |thesis| image:: https://img.shields.io/badge/thesis-doi:10.17619%2FUNIPB%2F1--957-informational
     :target: https://digital.ub.upb.de/hs/download/pdf/3395154
+
+.. |paper| image:: https://img.shields.io/badge/paper-arXiv:2008.01377-informational
+    :target: https://arxiv.org/pdf/2008.01377.pdf
 
 This package provide `set-valued`_ POS-taggers.
 The code relies on existing probabilistic taggers like CoreNLP_ and the TreeTagger_.
@@ -124,14 +127,14 @@ Citation
 --------
 ::
 
-    @mastersthesis{heid2019setpos,
-        author = {Heid, Stefan},
-        title = {Set-Valued Prediction for Part-of-Speech Tagging},
-        institution={Paderborn University},
-        date = {02/12/2019},
-        url = {https://digital.ub.upb.de/hs/download/pdf/3395154},
-        doi = {10.17619/UNIPB/1-957},
-    }
+  @article{heid2020reliable,
+      title={Reliable Part-of-Speech Tagging of Historical Corpora through Set-Valued Prediction},
+      author={Stefan Heid and Marcel Wever and Eyke Hüllermeier},
+      year={2020},
+      eprint={2008.01377},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+  }
 
 
 Acknowledgement
@@ -139,5 +142,3 @@ Acknowledgement
 
 I want to thank my supervisors and co-authors Marcel Wewer and Prof. Eyke Hüllermeier
 for the helpful feedback during the thesis
-
-
