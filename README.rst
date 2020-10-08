@@ -76,7 +76,7 @@ Data
 .. image:: https://img.shields.io/badge/license-CC--BY%204.0-informational
     :target: https://creativecommons.org/licenses/by/4.0/
 
-Data stems from the Intergramm_ and ReN_ project.
+Data stems from the Intergramm_ which in turn includes texts that originally stem from the ReN_ project and have been adapted to the Intergramm tagging guidelines.
 The corpus consists of historic Middle Lower German texts.
 The provided versions here have slight modifications like orthographic unification.
 
