@@ -1,8 +1,8 @@
 import json
 import tempfile
 from collections import defaultdict
-from subprocess import run
 from os import path
+from subprocess import run
 
 import pandas as pd
 from sklearn.model_selection import cross_val_score

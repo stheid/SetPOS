@@ -1,4 +1,5 @@
 {
+  "sep": ",",
   "char_max_size": 500,
   "word_max_size": 20000,
   "max_sent_len": 35,

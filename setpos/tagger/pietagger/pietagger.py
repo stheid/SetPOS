@@ -3,6 +3,7 @@ from io import StringIO
 
 import pandas as pd
 from pie.scripts import train as pietrain
+from pie.scripts import tag as pietag
 from pie.settings import settings_from_file
 from sklearn.model_selection import cross_val_score
 
@@ -33,16 +34,31 @@ class PieTagger(StateFullTagger):
                     .rename(columns={0: 'token', 1: 'pos'})
                     .assign(lemma=lambda x: x.token)[['token', 'lemma', 'pos']]
             )
-
-            df.to_csv(train)
-
+            df.to_csv(train, index=False)
             train.flush()
+
             settings = settings_from_file('settings.json')
             settings.input_path = train.name
             pietrain.run(settings)
 
     def predict_proba(self, X, y=None):
-        pass
+        with tempfile.NamedTemporaryFile('w', suffix='.tsv') as train:
+            io = StringIO()
+            split_dump([(X)], [io], as_dataset=True, augment=self.augment_setvalued_targets,
+                       tagsed_sents_tostr_kws=dict(dlm=",", word_dlm='\n', sent_dlm='\n.\,SENT\n'))
+            io.seek(0)
+
+            df = (
+                pd.read_csv(io, header=None, na_filter=False)
+                    .rename(columns={0: 'token', 1: 'pos'})
+                    .assign(lemma=lambda x: x.token)[['token', 'lemma', 'pos']]
+            )
+            df.to_csv(train, index=False)
+            train.flush()
+
+            settings = settings_from_file('settings.json')
+            settings.input_path = train.name
+            pietag.run(settings)
 
 
 if __name__ == '__main__':
