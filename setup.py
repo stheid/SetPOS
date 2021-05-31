@@ -10,12 +10,12 @@ with open('requirements_extra.txt', 'r') as f:
     requirements_extra = f.read().splitlines()
 
 setup(name='setpos',
-      version='0.1.0',
+      version='0.1.1',
       description='Setvalued part-of-speech-tagger build on top CoreNLP and TreeTagger',
       long_description=readme,
       author='Stefan Heid',
       author_email='stefan.heid@upb.de',
-      python_requires='>=3.8',
+      python_requires='3.7',  # "nlp-pie" needs "torch==1.3.1" which needs "python==3.7"
       classifiers=[
           'Development Status :: 4 - Beta',
           'Intended Audience :: Science/Research',
@@ -24,7 +24,7 @@ setup(name='setpos',
           'Natural Language :: English',
           'Topic :: Scientific/Engineering',
           'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.7',
       ],
       url='https://github.com/stheid/SetPOS',
       install_requires=requirements,

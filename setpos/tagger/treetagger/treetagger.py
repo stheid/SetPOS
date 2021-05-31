@@ -69,8 +69,6 @@ class TreeTagger(StateFullTagger):
                 print(self.error)
 
     def predict_proba(self, X, y=None):
-        super().predict_proba(X)
-
         with tempfile.NamedTemporaryFile("w") as eval, tempfile.NamedTemporaryFile("r") as out:
             split_dump([(X,)], [eval], as_dataset=True, augment=self.augment_setvalued_targets,
                        tagsed_sents_tostr_kws=dict(tags_to_string=None, word_dlm='\n', sent_dlm='.\n'))
