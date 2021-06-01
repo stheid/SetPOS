@@ -32,7 +32,7 @@
     "mode": "min"
   },
   "batch_size": 200,
-  "epochs": 10,
+  "epochs": 100,
   "word_dropout": 0,
   "clip_norm": 5,
   "linear_layers": 1,
@@ -48,7 +48,7 @@
   "checks_per_epoch": 1,
   "report_freq": 200,
   "verbose": true,
-  "device": "cpu",
+  "device": "cuda",
   "buffer_size": 10000,
   "minimize_pad": false,
   "shuffle": true,

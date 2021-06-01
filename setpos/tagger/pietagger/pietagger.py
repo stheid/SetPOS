@@ -101,9 +101,18 @@ if __name__ == '__main__':
     clf.fit(toks[train], tags[train])
 
     mean_setsize = clf.meansetsize(toks[test])
+    print(f'meansetsize: {mean_setsize:.2f}')
     known_words = clf.knownwords(toks[test])
-    accuracy = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(5, seed=1), n_jobs=2).mean()
-    utility = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(5, seed=1), n_jobs=2).mean()
+    print(f'knownwords: {known_words:.2%}')
+    acc = clf.singlescore(toks[test], tags[test])
+    print(f'accuracy: {acc:.2%}')
+    util = clf.setscore(toks[test], tags[test])
+    print(f'util: {util:.2%}')
+
+    exit(0)
+    accuracy = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(5, seed=1), n_jobs=1).mean()
+    print(f'accuracy: {accuracy:.2%}')
+    utility = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(5, seed=1), n_jobs=1).mean()
 
     print(f'meansetsize: {mean_setsize:.2f}')
     print(f'knownwords: {known_words:.2%}')
