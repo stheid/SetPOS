@@ -56,42 +56,43 @@ class PieTagger(StateFullTagger):
             self.modelfile = glob(self.modelfile + '*')[-1]
 
     def predict_proba(self, X, y=None):
-        with tempfile.NamedTemporaryFile('w') as eval:
-            io = StringIO()
-            split_dump([(X,)], [io], as_dataset=True, augment=self.augment_setvalued_targets,
-                       tagsed_sents_tostr_kws=dict(tags_to_string=None, word_dlm=' ', sent_dlm=' '))
-            io.seek(0)
-            settings = settings_from_file('settings.json')
+        io = StringIO()
+        split_dump([(X,)], [io], as_dataset=True, augment=self.augment_setvalued_targets,
+                   tagsed_sents_tostr_kws=dict(tags_to_string=None, word_dlm=' ', sent_dlm=' '))
+        io.seek(0)
+        settings = settings_from_file('settings.json')
 
-            lines = io.readlines()
-            with redirect_stdout(open(devnull, 'w')), redirect_stderr(open(devnull, 'w')):
-                model = BaseModel.load(self.modelfile)
-                tags = model.label_encoder.tasks['pos'].inverse_table
+        lines = io.readlines()
+        with redirect_stdout(open(devnull, 'w')), redirect_stderr(open(devnull, 'w')):
+            model = BaseModel.load(self.modelfile)
+            tags = model.label_encoder.tasks['pos'].inverse_table
 
-                probas = []
-                for chunk in utils.chunks(lines, settings.batch):
-                    batch = list(zip(chunk, repeat(None)))
+            probas = []
+            for chunk in utils.chunks(lines, settings.batch):
+                batch = list(zip(chunk, repeat(None)))
 
-                    inp, _ = pack_batch(model.label_encoder, batch, settings.cpu)
+                inp, _ = pack_batch(model.label_encoder, batch, settings.cpu)
 
-                    (word, wlen), (char, clen) = inp
-                    emb, *_ = model.embedding(word, wlen, char, clen)
+                (word, wlen), (char, clen) = inp
+                emb, *_ = model.embedding(word, wlen, char, clen)
 
-                    enc_outs = model.encoder(emb, wlen)
-                    outs = enc_outs[-1]
+                enc_outs = model.encoder(emb, wlen)
+                outs = enc_outs[-1]
 
-                    decoder = model.decoders['pos'](outs)
-                    proba = F.softmax(decoder, dim=-1)
-                    probas.append(proba)
+                decoder = model.decoders['pos'](outs)
+                proba = F.softmax(decoder, dim=-1)
+                probas.append(proba)
 
             # return dense matrix of probabilities, each row expresses probabilities of the tags in self._tags sorted
             # one row per X
-            df = pd.DataFrame(probas[0].detach().numpy().squeeze(), columns=tags)
+
+            # https://github.com/emanjavacas/pie/blob/0ca4311a57b2439994e5fcdc02f4d008ee268a9c/pie/models/decoder.py#L75
+            df = pd.DataFrame(probas[0].detach().numpy().squeeze()[:len(X), :], columns=tags)
         return pd.DataFrame(df, columns=sorted(self._tags)).fillna(0).to_numpy(dtype=float)
 
 
 if __name__ == '__main__':
-    toks, tags, groups = [l[:5000] for l in load()]  # load()
+    toks, tags, groups = [l[:] for l in load()]  # load()
 
     train, test = next(MCInDocSplitter(seed=1).split(toks, tags, groups))
     # train, test = next(LeaveOneGroupOut().split(toks, tags, groups))
@@ -101,8 +102,8 @@ if __name__ == '__main__':
 
     mean_setsize = clf.meansetsize(toks[test])
     known_words = clf.knownwords(toks[test])
-    accuracy = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(2, seed=1), n_jobs=1).mean()
-    utility = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(2, seed=1), n_jobs=1).mean()
+    accuracy = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(5, seed=1), n_jobs=2).mean()
+    utility = cross_val_score(clf, toks, tags, groups, cv=KFoldInDocSplitter(5, seed=1), n_jobs=2).mean()
 
     print(f'meansetsize: {mean_setsize:.2f}')
     print(f'knownwords: {known_words:.2%}')
